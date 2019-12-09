@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Platform, StyleSheet, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Haptics from "expo-haptics";
 
@@ -45,6 +45,8 @@ class GradientButton extends React.PureComponent {
       blueMarine,
       deepBlue,
       disabled,
+      loading,
+      loadingColor
     } = this.props;
 
     const purpleVioletColor = ["#7B42F6", "#B01EFF"];
@@ -73,7 +75,7 @@ class GradientButton extends React.PureComponent {
     return (
       <TouchableOpacity
         style={[styles.button, { height, width }, style]}
-        onPress={disabled ? null : () => {
+        onPress={ (disabled || loading) ? null : () => {
           if (Platform.OS === "ios" && impact === true) {
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle[impactStyle]);
           }
@@ -116,7 +118,10 @@ class GradientButton extends React.PureComponent {
               : horizontalGradient.end
           }
         >
-          <Text style={[styles.text, textStyle]}>{text ? text : children}</Text>
+         {loading 
+         ? <ActivityIndicator size="small" color={loadingColor ? loadingColor: "#1e1e1e"} /> 
+         : <Text style={[styles.text, textStyle]}>{text ? text : children}</Text>}
+
         </LinearGradient>
       </TouchableOpacity>
     );
@@ -133,6 +138,7 @@ GradientButton.defaultProps = {
   impactStyle: "Heavy",
   textStyle: {},
   disabled: false,
+  loading: false,
   disabledGradientBegin: "#D3D3D3",
   disabledGradientEnd: "#696969",
 };

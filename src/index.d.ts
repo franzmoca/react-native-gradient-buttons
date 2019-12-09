@@ -28,4 +28,6 @@ export interface Props {
     disabled: boolean,
     disabledGradientBegin: string,
     disabledGradientEnd: string,
+    loading: boolean,
+    loadingColor: string
 }
