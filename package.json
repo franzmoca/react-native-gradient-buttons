@@ -24,12 +24,12 @@
     "build": "tsc"
   },
   "dependencies": {
-    "expo-haptics": "^6.0.0",
-    "expo-linear-gradient": "^6.0.0"
+    "expo-haptics": "^6.0.0"
   },
   "peerDependencies": {
     "react": ">= 16.x",
-    "react-native": ">= 0.55.x"
+    "react-native": ">= 0.55.x",
+    "expo-linear-gradient": "^6.0.0"
   },
   "devDependencies": {
     "@types/expo": "^27.0.12",
